@@ -1,0 +1,114 @@
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a2a35;
+    border: 1px solid #0a0a0c;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #7f13ec;
+}
+
+/* Efectos visuales */
+.scanline {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1));
+    background-size: 100% 4px;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+/* Navegación */
+.nav-link {
+    position: relative;
+}
+.nav-link::before {
+    content: '[';
+    position: absolute;
+    left: -12px;
+    opacity: 0;
+    transition: all 0.2s;
+    color: #fbbf24;
+    font-family: 'Space Mono', monospace;
+}
+.nav-link::after {
+    content: ']';
+    position: absolute;
+    right: -12px;
+    opacity: 0;
+    transition: all 0.2s;
+    color: #fbbf24;
+    font-family: 'Space Mono', monospace;
+}
+.nav-link:hover::before,
+.nav-link:hover::after {
+    opacity: 1;
+}
+.nav-link:hover::before {
+    left: -18px;
+}
+.nav-link:hover::after {
+    right: -18px;
+}
+
+/* Comportamiento general */
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    will-change: transform;
+}
+
+.header-hidden {
+    transform: translateY(-110%);
+}
+
+/* Utilidades para Proyectos y Layout */
+.tech-border {
+    position: relative;
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+.chip-border {
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.full-bleed {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.projects-injected {
+    margin-bottom: 3rem;
+}
+
+.projects-spacer {
+    height: 4rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .projects-spacer {
+        height: 6rem;
+    }
+}
+
+main > section {
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

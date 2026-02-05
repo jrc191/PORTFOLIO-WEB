@@ -1,0 +1,21 @@
+# --- Sistema Operativo ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+.prettierrc
+.prettierrc.json
+
+# --- IDEs y Editores (VS Code, IntelliJ, etc) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# --- Logs y archivos temporales ---
+*.log
+npm-debug.log*
+
+# --- Dependencias (si usaras Node en el futuro) ---
+node_modules/
+dist/
