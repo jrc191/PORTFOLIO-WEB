@@ -2,23 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Referencias al DOM
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = menuBtn ? menuBtn.querySelector('span') : null;
     const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
     const headerEl = document.querySelector('header');
 
     // --- MENÚ MÓVIL ---
     function toggleMenu() {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        if (menuIcon) {
-            menuIcon.textContent = isHidden ? 'menu_open' : 'close';
-        }
-        menuBtn.setAttribute('aria-expanded', String(!isHidden));
-    }
+    if (!mobileMenu || !menuBtn) return;
+    const isHiddenNow = mobileMenu.classList.toggle('hidden');
+    // aria-expanded should reflect whether the menu is open (true when visible)
+    menuBtn.setAttribute('aria-expanded', String(!isHiddenNow));
+}
 
     function closeMenu() {
-        if (!mobileMenu || !menuIcon) return;
+        if (!mobileMenu || !menuBtn) return;
         mobileMenu.classList.add('hidden');
-        menuIcon.textContent = 'menu_open';
         menuBtn.setAttribute('aria-expanded', 'false');
     }
 

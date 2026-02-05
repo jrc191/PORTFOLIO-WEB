@@ -247,3 +247,31 @@ p, h1, h2, h3, h4, a, span, li, button {
         box-shadow: none !important;
     }
 }
+
+/* Mobile menu icon swap using aria-expanded to avoid overlapping/visible close icon */
+#mobile-menu-btn .icon-close {
+    display: none;
+}
+#mobile-menu-btn .icon-menu {
+    display: inline-block;
+    
+}
+#mobile-menu-btn .icon-menu,
+#mobile-menu-btn .icon-close {
+    line-height: 1;
+    vertical-align: middle;
+}
+#mobile-menu-btn[aria-expanded="true"] .icon-menu {
+    display: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+#mobile-menu-btn[aria-expanded="true"] .icon-close {
+    display: inline-block;
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Small transition for icon swap */
+#mobile-menu-btn .icon-menu, #mobile-menu-btn .icon-close {
+    transition: opacity 160ms ease, transform 160ms ease;
+}
