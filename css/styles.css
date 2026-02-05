@@ -159,3 +159,91 @@ p, h1, h2, h3, h4, a, span, li, button {
     .text-5xl { font-size: 2.25rem; }
     .text-7xl { font-size: 3rem; }
 }
+
+/* Additional mobile fixes for flex/grid children and container padding */
+@media (max-width: 640px) {
+    /* Ensure centered containers keep inner padding */
+    .max-w-\[1200px\], .max-w-\[1000px\] {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Allow flex and grid children to shrink and wrap properly */
+    .flex > *, .grid > * {
+        min-width: 0 !important;
+    }
+
+    /* Ensure images scale within their containers */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+    }
+
+    /* Make large headings wrap and not force horizontal overflow */
+    h1, h2, h3, h4, .text-4xl, .text-5xl, .text-7xl {
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+    }
+
+    /* If anything still overflows, allow horizontal scroll rather than clipping */
+    body.overflow-x-hidden {
+        overflow-x: auto !important;
+    }
+}
+
+/* Prevent headings from breaking mid-word on large screens */
+@media (min-width: 1024px) {
+    h1, h2, h3, h4,
+    .text-4xl, .text-5xl, .text-7xl {
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+        white-space: normal !important;
+    }
+
+    /* Restore normal wrapping for inline elements at large sizes */
+    p, a, span, li, button {
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+    }
+}
+
+/* Make the experience section title match the projects title size for visual consistency */
+#experience .flex.items-end h3 {
+    font-size: 2.25rem; /* matches Tailwind's text-4xl */
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    #experience .flex.items-end h3 {
+        font-size: 2.25rem; /* keep consistent on md+ */
+    }
+}
+
+/* Subtle pulse for active/ongoing items */
+@keyframes pulse-weak {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99,102,241,0);
+    }
+    50% {
+        box-shadow: 0 18px 40px -22px rgba(99,102,241,0.14);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(99,102,241,0);
+    }
+}
+
+.pulse-weak {
+    animation: pulse-weak 3.2s ease-in-out infinite;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .pulse-weak {
+        animation: none !important;
+        box-shadow: none !important;
+    }
+}
