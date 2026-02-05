@@ -112,3 +112,50 @@ main > section {
     flex-direction: column;
     justify-content: flex-start;
 }
+
+/* Responsive fixes: avoid horizontal clipping on small screens */
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Allow long words and headings to wrap instead of overflowing */
+p, h1, h2, h3, h4, a, span, li, button {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* Remove decorative clip-paths and add safe padding on narrow viewports */
+@media (max-width: 640px) {
+    body {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    header, main, footer {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    /* Many decorative borders use clip-path which can visually cut content on very small screens */
+    .clip-path-polygon, .tech-border, .chip-border {
+        clip-path: none !important;
+        -webkit-clip-path: none !important;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    /* Ensure absolutely positioned decorative elements don't push text outside viewport */
+    .group > .absolute, .relative > .absolute {
+        left: 0.5rem !important;
+        right: 0.5rem !important;
+        max-width: calc(100% - 1rem) !important;
+    }
+
+    /* Scale very large headings down slightly for small screens */
+    .text-5xl { font-size: 2.25rem; }
+    .text-7xl { font-size: 3rem; }
+}
